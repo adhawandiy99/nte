@@ -11,45 +11,67 @@
 |
 */
 
-
 Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login','LoginController@ceklogin');
 Route::group(['middleware' => 'auth'], function() {
-	Route::get('/', function () {
-    return view('welcome');
-	});
+	Route::get('/','HomeController@index');
+
 	//user
-	Route::get('/user','UserController@index');
-  Route::get('/user/{id}','UserController@input');
-  Route::post('/user/{id}','UserController@save');
-  Route::post('/deleteUser/{id}','UserController@delete');
+    Route::get('/teknisi','TeknisiController@index');
+    Route::get('/teknisi/{id}','TeknisiController@input');
+    Route::post('/teknisi/{id}','TeknisiController@save');
+    Route::post('/deleteTeknisi/{id}','TeknisiController@delete');
+	//order
+    Route::get('/order','OrderController@index');
+    Route::get('/order/{id}','OrderController@input');
+    Route::post('/order/{id}','OrderController@save');
+    Route::post('/deleteOrder/{id}','OrderController@delete');
+	//material
+    Route::get('/material','MaterialController@index');
+    Route::get('/material/{id}','MaterialController@input');
+    Route::post('/material/{id}','MaterialController@save');
+    Route::post('/deleteMaterial/{id}','MaterialController@delete');
+    //inbox teknisi
+    Route::get('/inbox_order','TeknisiController@inbox');
+    Route::get('/getDetail/{id}','OrderController@detail');
+    Route::get('/progress/{id}','OrderController@progress');
+    Route::post('/progress/{id}','OrderController@saveprogress');
 
-  //do
-	Route::get('/do','DoController@index');
-  Route::get('/do/{id}','DoController@input');
-  Route::post('/do/{id}','DoController@save');
-
-  //pengeluaran
-  Route::get('/out','PengeluaranController@index');
-  Route::get('/out/{id}','PengeluaranController@input');
-  Route::post('/out/{id}','PengeluaranController@save');
-
-  //opname
-  Route::get('/opname','OpnameController@index');
-  Route::get('/opname/{id}','OpnameController@input');
-  Route::post('/opname/{id}','OpnameController@save');
-  Route::post('/opnameListItem/{id}','OpnameController@saveItem');
-  Route::get('/opnameListItem/{id}','OpnameController@listItem');
+    //report
+    Route::get('/report1','ReportController@index');
+    Route::get('/report2','ReportController@rekapMaterial');
+    Route::get('/printpdf/{id}','ReportController@pdf');
+    
 
 
-  //info
 
-  Route::get('/searchitem','SearchController@item');
-  Route::get('/searchdo','SearchController@do');
-  Route::get('/infoout','SearchController@pengeluaran');
-  Route::get('/infostok','SearchController@stok');
 
-	Route::get('/logout','LoginController@logout');
+    //so
+    Route::get('/do','DoController@index');
+    Route::get('/do/{id}','DoController@input');
+    Route::post('/do/{id}','DoController@save');
+
+    //pengeluaran
+    Route::get('/out','PengeluaranController@index');
+    Route::get('/out/{id}','PengeluaranController@input');
+    Route::post('/out/{id}','PengeluaranController@save');
+
+    //opname
+    Route::get('/opname','OpnameController@index');
+    Route::get('/opname/{id}','OpnameController@input');
+    Route::post('/opname/{id}','OpnameController@save');
+    Route::post('/opnameListItem/{id}','OpnameController@saveItem');
+    Route::get('/opnameListItem/{id}','OpnameController@listItem');
+
+
+    //info
+
+    Route::get('/searchitem','SearchController@item');
+    Route::get('/searchdo','SearchController@do');
+    Route::get('/infoout','SearchController@pengeluaran');
+    Route::get('/infostok','SearchController@stok');
+
+    Route::get('/logout','LoginController@logout');
 });

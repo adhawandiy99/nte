@@ -21,6 +21,12 @@
 	    </div>
 	  </div>
 	  <div class="form-group form-message-dark">
+	    <label for="teknisi_id" class="col-md-3 control-label">Teknisi</label>
+	    <div class="col-md-9">
+	      <input type="text" name="teknisi_id" class="form-control" id="teknisi_id" placeholder="teknisi_id">
+	    </div>
+	  </div>
+	  <div class="form-group form-message-dark">
 	    <label for="tgl_keluar" class="col-md-3 control-label">Tgl Keluar</label>
 	    <div class="col-md-9">
 	      <input type="text" name="tgl_keluar" class="form-control" id="tgl_keluar" placeholder="tgl_keluar" value="{{ isset($data->tgl_keluar) ? $data->tgl_keluar : ''}}" required>
@@ -79,6 +85,13 @@
     $('#do-form').pxValidate();
     $('#tgl_keluar').datepicker({
     	format: 'yyyy-mm-dd'
+    });
+    var teknisi = <?= json_encode($teknisi); ?>;
+    $('#teknisi_id').select2({
+      placeholder: 'Select',
+      dropdownCssClass : 'no-search',
+      data: teknisi,
+      multiple:false
     });
 	});
 </script>

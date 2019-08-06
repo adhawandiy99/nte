@@ -35,6 +35,7 @@ class PengeluaranModel
           "tujuan" => $req->tujuan,
           "tgl_keluar" => $req->tgl_keluar,
           "petugas_id" => $auth->id,
+          "teknisi_id" => $req->teknisi_id,
           "petugas_nama" => $auth->nama
       ]);
       
@@ -44,6 +45,7 @@ class PengeluaranModel
           "tujuan" => $req->tujuan,
           "tgl_keluar" => $req->tgl_keluar,
           "petugas_id" => $auth->id,
+          "teknisi_id" => $req->teknisi_id,
           "petugas_nama" => $auth->nama
       ]);
     }

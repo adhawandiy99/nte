@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use DB;
+use App\DA\TeknisiModel;
+
 class LoginController extends Controller
 {
+	public function index(){
+		return view('Login');
+	}
+
 	public function ceklogin(Request $req){
 		//dd($user);
 		$user = $req->input('username');
 		$pass = $req->input('password');
-    $result = DB::select('
-    SELECT *
-    FROM tbl_user
-    WHERE username = ? AND password = ?', [$user, $pass]);
-  
+		$result = TeknisiModel::login($user, $pass);
 		if (count($result)>0) {
 			$session = $req->session();
 			$session->put('auth', $result[0]);

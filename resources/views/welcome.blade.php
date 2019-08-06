@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-  .: WH :.
+  .: promon :.
 @endsection
 @section('header')
   SELAMAT DATANG DI APLIKASI<br>MAINTENANCE & PENGELOLAAN<br>JARINGAN OPTIK PADA PT. TELKOM AKSES

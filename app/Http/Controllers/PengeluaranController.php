@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\DA\PengeluaranModel;
 use App\DA\UploadModel;
+use App\DA\TeknisiModel;
 use Excel;
 class PengeluaranController extends Controller
 {
@@ -17,7 +18,8 @@ class PengeluaranController extends Controller
   public function input($id){
     $data = PengeluaranModel::getById($id);
     $sn = PengeluaranModel::getSNById($id);
-    return view('pengeluaran.form', compact('data', 'sn'));
+    $teknisi = TeknisiModel::getUser4Select2();
+    return view('pengeluaran.form', compact('data', 'sn', 'teknisi'));
   }
   public function save($id, Request $req){
     if ($req->hasFile('file_sn_out')) {

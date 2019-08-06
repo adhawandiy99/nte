@@ -16,7 +16,7 @@
   <link href="/css/widgets.min.css" rel="stylesheet" type="text/css">
 
   <!-- Theme -->
-  <link href="/css/themes/asphalt.min.css" rel="stylesheet" type="text/css">
+  <link href="/css/themes/purple-hills.min.css" rel="stylesheet" type="text/css">
 
   <!-- Pace.js -->
   <script src="/pace/pace.min.js"></script>
@@ -33,14 +33,8 @@
     </button>
 
     <ul class="px-nav-content">
-      <li class="px-nav-item px-nav-dropdown {{ Request ::segment(1) == 'user'?'px-open active' : '' }}">
-        <a href="#"><i class="px-nav-icon ion-ios-plus"></i><span class="px-nav-label">Admin</span></a>
-        <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item {{ Request ::segment(1) == 'user'?'active' : '' }}"><a href="/user"><span class="px-nav-label">User</span></a></li>
-        </ul>
-      </li>
       <li class="px-nav-item px-nav-dropdown {{ (Request ::segment(1)=='do'||Request ::segment(1)=='out'||Request ::segment(1)=='opname')?'px-open active' : '' }}">
-        <a href="#"><i class="px-nav-icon ion-iphone"></i><span class="px-nav-label">Transaksional</span></a>
+        <a href="#"><i class="px-nav-icon ion-iphone"></i><span class="px-nav-label">Transaksional Gudang</span></a>
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item {{ (Request ::segment(1)=='do')?'active' : '' }}"><a href="/do"><span class="px-nav-label">Input DO</span></a></li>
         </ul>
@@ -52,7 +46,7 @@
         </ul>
       </li>
       <li class="px-nav-item px-nav-dropdown {{ str_contains(Request ::segment(1), ['info','search'])?'px-open active' : '' }}">
-        <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Info</span></a>
+        <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Info Gudang</span></a>
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item {{ Request ::segment(1) == 'infostok'?'active' : '' }}"><a href="/infostok"><span class="px-nav-label">Stok</span></a></li>
         </ul>
@@ -67,7 +61,27 @@
         </ul>
       </li>
       <li class="px-nav-item px-nav-dropdown">
-        <a href="#"><i class="px-nav-icon ion-ios-person"></i><span class="px-nav-label">username </span></a>
+        <a href="#"><i class="px-nav-icon ion-ios-plus"></i><span class="px-nav-label">Admin</span></a>
+        <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href="/teknisi"><span class="px-nav-label">Teknisi</span></a></li>
+          <li class="px-nav-item"><a href="/material"><span class="px-nav-label">Material</span></a></li>
+          <li class="px-nav-item"><a href="/order"><span class="px-nav-label">Order</span></a></li>
+        </ul>
+      </li>
+      <li class="px-nav-item px-nav-dropdown">
+        <a href="#"><i class="px-nav-icon ion-iphone"></i><span class="px-nav-label">Teknisi</span></a>
+        <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href="/inbox_order"><span class="px-nav-label">Inbox Order</span></a></li>
+        </ul>
+      </li>
+      <li class="px-nav-item px-nav-dropdown">
+        <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Reporting</span></a>
+        <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href="/report1"><span class="px-nav-label">Report1</span></a></li>
+        </ul>
+      </li>
+      <li class="px-nav-item px-nav-dropdown">
+        <a href="#"><i class="px-nav-icon ion-ios-person"></i><span class="px-nav-label">{{ session('auth')->Username }} </span></a>
 
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="/logout"><span class="px-nav-label">Logout</span></a></li>
@@ -92,7 +106,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            username
+            {{ session('auth')->Username }}
           </a>
           <ul class="dropdown-menu">
             <li><a href="#">First item</a></li>
