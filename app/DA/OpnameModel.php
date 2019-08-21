@@ -31,15 +31,15 @@ class OpnameModel
       ->where("id" , $id)
       ->update([
           "tgl_opname" => $req->tgl_opname,
-          "petugas_id" => $auth->id,
-          "petugas_nama" => $auth->nama
+          "petugas_id" => $auth->ID_Sistem,
+          "petugas_nama" => $auth->Nama
       ]);
     }else{
       $id = DB::table(self::TABLE)
       ->insertGetId([
           "tgl_opname" => $req->tgl_opname,
-          "petugas_id" => $auth->id,
-          "petugas_nama" => $auth->nama
+          "petugas_id" => $auth->ID_Sistem,
+          "petugas_nama" => $auth->Nama
       ]);
       $data = self::getInsert($id);
       self::insertList($data);

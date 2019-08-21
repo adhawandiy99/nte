@@ -34,8 +34,8 @@ class DoModel
       ->update([
           "nomor_do" => $req->nomor_do,
           "tgl_terima" => $req->tgl_terima,
-          "penerima_id" => $auth->id,
-          "penerima_nama" => $auth->nama
+          "penerima_id" => $auth->ID_Sistem,
+          "penerima_nama" => $auth->Nama
       ]);
       
     }else{
@@ -43,8 +43,8 @@ class DoModel
       ->insertGetId([
           "nomor_do" => $req->nomor_do,
           "tgl_terima" => $req->tgl_terima,
-          "penerima_id" => $auth->id,
-          "penerima_nama" => $auth->nama
+          "penerima_id" => $auth->ID_Sistem,
+          "penerima_nama" => $auth->Nama
       ]);
     }
     return $id;

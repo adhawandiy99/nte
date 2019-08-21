@@ -34,9 +34,9 @@ class PengeluaranModel
       ->update([
           "tujuan" => $req->tujuan,
           "tgl_keluar" => $req->tgl_keluar,
-          "petugas_id" => $auth->id,
+          "petugas_id" => $auth->ID_Sistem,
           "teknisi_id" => $req->teknisi_id,
-          "petugas_nama" => $auth->nama
+          "petugas_nama" => $auth->Nama
       ]);
       
     }else{
@@ -44,9 +44,9 @@ class PengeluaranModel
       ->insertGetId([
           "tujuan" => $req->tujuan,
           "tgl_keluar" => $req->tgl_keluar,
-          "petugas_id" => $auth->id,
+          "petugas_id" => $auth->ID_Sistem,
           "teknisi_id" => $req->teknisi_id,
-          "petugas_nama" => $auth->nama
+          "petugas_nama" => $auth->Nama
       ]);
     }
     return $id;
