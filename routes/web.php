@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/progress/{id}','OrderController@saveprogress');
 
     //report
-    Route::get('/report1','ReportController@index');
+    Route::get('/report1/{day}','ReportController@index');
     Route::get('/report2','ReportController@rekapMaterial');
     Route::get('/printpdf/{id}','ReportController@pdf');
     
@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/searchdo','SearchController@do');
     Route::get('/infoout','SearchController@pengeluaran');
     Route::get('/infostok','SearchController@stok');
+    Route::get('/stokByModel/{model}','SearchController@stokByModel');
 
     Route::get('/logout','LoginController@logout');
 });

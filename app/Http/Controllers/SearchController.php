@@ -28,7 +28,13 @@ class SearchController extends Controller
     return view('info.pengeluaran', compact('data'));
   }
   public function stok(){
-    $data = DB::select("SELECT model, (select count(*) from tbl_nte tn where model = tn.model and status='In Warehouse') as stok FROM tbl_nte GROUP BY model ORDER BY model");
+    $data = DB::select("SELECT model, (select count(*) from tbl_nte tn where tn.model = tn2.model and status='In Warehouse') as stok FROM tbl_nte tn2 GROUP BY model ORDER BY model");
     return view('info.stok', compact('data'));
   }
+  public function stokByModel($model){
+    $data = DB::table('tbl_nte')->where('model', $model)->where('status', 'In Warehouse')->get();
+    // dd($data);
+    return view('info.ajaxstok', compact('data'));
+  }
+
 }

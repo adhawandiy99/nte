@@ -77,7 +77,7 @@
       <li class="px-nav-item px-nav-dropdown">
         <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Reporting</span></a>
         <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item"><a href="/report1"><span class="px-nav-label">Report1</span></a></li>
+          <li class="px-nav-item"><a href="/report1/all"><span class="px-nav-label">Report1</span></a></li>
         </ul>
       </li>
       <li class="px-nav-item px-nav-dropdown">

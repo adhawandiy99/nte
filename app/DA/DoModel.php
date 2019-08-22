@@ -31,21 +31,11 @@ class DoModel
     if($exist){
       DB::table(self::TABLE)
       ->where("id" , $id)
-      ->update([
-          "nomor_do" => $req->nomor_do,
-          "tgl_terima" => $req->tgl_terima,
-          "penerima_id" => $auth->ID_Sistem,
-          "penerima_nama" => $auth->Nama
-      ]);
+      ->update($req);
       
     }else{
       $id = DB::table(self::TABLE)
-      ->insertGetId([
-          "nomor_do" => $req->nomor_do,
-          "tgl_terima" => $req->tgl_terima,
-          "penerima_id" => $auth->ID_Sistem,
-          "penerima_nama" => $auth->Nama
-      ]);
+      ->insertGetId($req);
     }
     return $id;
   }

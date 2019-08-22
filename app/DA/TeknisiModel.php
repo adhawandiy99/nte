@@ -37,9 +37,11 @@ class TeknisiModel
         ]);
       }
       DB::table(self::TABLE)
-      ->where("ID_Sys" , $id)
+      ->where("ID_Sistem" , $id)
       ->update([
           "Username" => $req->Username,
+          "NIK" => $req->NIK,
+          "No_HP" => $req->No_HP,
           "Nama" => $req->Nama,
           "Level" => $req->Level
       ]);
@@ -48,6 +50,8 @@ class TeknisiModel
       DB::table(self::TABLE)
       ->insert([
           "Username" => $req->Username,
+          "NIK" => $req->NIK,
+          "No_HP" => $req->No_HP,
           "Password" => MD5($req->Password),
           "Nama" => $req->Nama,
           "Level" => $req->Level

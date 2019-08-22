@@ -11,8 +11,23 @@ use PDF;
 
 class ReportController extends Controller
 {
-	public function index(){
-		$data = OrderModel::getAll();
+	public function index($day){
+		$d = explode('-', $day);
+		$day='all';
+		if($d[0]){
+			$day = $d[0];
+		}
+		if($d[1]){
+			$day .= '-'.$d[1];
+		}
+		if($d[1]){
+			$day = '-'.$d[2];
+		}
+		if($day=="all"){
+			$data = OrderModel::getAll();
+		}else{
+			$data = OrderModel::getByDate($day);
+		}
 		return view('report.report1', compact('data'));
 	}
 	public function rekapMaterial(){

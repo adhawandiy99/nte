@@ -32,6 +32,15 @@
 	      <input type="file" name="file_sn" class="form-control" id="file_sn" placeholder="file_sn" value="{{ isset($data->file_sn) ? $data->file_sn : '' }}" required>
 	    </div>
 	  </div>
+	  <div class="form-group form-message-dark">
+	    <label for="surat_jalan" class="col-md-3 control-label">Surat Jalan</label>
+	    <div class="col-md-9">
+	      <input type="file" name="surat_jalan" class="form-control" id="surat_jalan" placeholder="surat_jalan" required>
+	    </div>
+	    @if(isset($data->surat_jalan))
+	    	<a href="/upload/surat_jalan/{{ $data->surat_jalan }}">Download</a>
+	    @endif
+	  </div>
     <div class="form-group">
 	    <div class="col-md-offset-3 col-md-9">
 	      <button type="submit" class="btn"><span class="btn-label-icon left fa fa-database"></span>Submit</button>

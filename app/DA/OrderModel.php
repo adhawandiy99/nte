@@ -15,6 +15,10 @@ class OrderModel
   {
     return DB::table(self::TABLE)->leftJoin('Teknisi', self::TABLE.'.Teknisi_ID', '=', 'Teknisi.ID_Sistem')->get();
   }
+  public static function getByDate($day)
+  {
+    return DB::table(self::TABLE)->leftJoin('Teknisi', self::TABLE.'.Teknisi_ID', '=', 'Teknisi.ID_Sistem')->where('created_at', 'like', $day.'%')->get();
+  }
   public static function delete($id)
   {
     return DB::table(self::TABLE)->where('ID_Sistem', $id)->delete();

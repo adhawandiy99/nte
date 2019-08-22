@@ -22,9 +22,15 @@ class DoController extends Controller
   }
   public function save($id, Request $req){
     // $data = DoModel::insertOrUpdate($id, $req);
+    $auth = session('auth');
     if ($req->hasFile('file_sn')) {
 
-      $id = DoModel::insertOrUpdate($id, $req);
+      $id = DoModel::insertOrUpdate($id, [
+          "nomor_do" => $req->nomor_do,
+          "tgl_terima" => $req->tgl_terima,
+          "penerima_id" => $auth->ID_Sistem,
+          "penerima_nama" => $auth->Nama
+      ]);
       $file = $req->file('file_sn');
       $arr = Excel::toArray(new UploadModel, $file);
       $result=array();
@@ -34,6 +40,26 @@ class DoController extends Controller
         }
       }
       DoModel::insertNte($id, $result);
+
+      //do upload surat jalan
+      $input = 'surat_jalan';
+      if ($req->hasFile($input)) {
+        //dd('asd');
+        $path = public_path().'/upload/surat_jalan/';
+        if (!file_exists($path)) {
+          if (!mkdir($path, 0775, true))
+            return 'gagal menyiapkan folder foto evidence';
+        }
+        $file = $req->file($input);
+        try {
+          $nama = $file->getClientOriginalName();
+          $moved = $file->move("$path", "$nama");
+          DoModel::insertOrUpdate($id, ["surat_jalan"=>$nama]);
+        }
+        catch (\Symfony\Component\HttpFoundation\File\Exception\FileException $e) {
+          return 'gagal menyimpan foto evidence '.$id;
+        }
+      }
       return redirect('/do/'.$id);
       // return view('do.form', compact('data', 'sn'));
     }
