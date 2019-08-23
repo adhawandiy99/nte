@@ -60,6 +60,12 @@ class PengeluaranModel
       ->whereIn('sn',$sn)
       ->update($update);
   }
+  public static function cekNte($sn)
+  {
+
+    return DB::table(self::NTE)->where('sn', $sn)
+      ->whereNull('pengeluaran_id')->first();
+  }
 
   // public static function get4Select2()
   // {

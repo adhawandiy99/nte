@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     //pengeluaran
     Route::get('/out','PengeluaranController@index');
+    Route::get('/cekNte/{sn}','PengeluaranController@cekNte');
     Route::get('/out/{id}','PengeluaranController@input');
     Route::post('/out/{id}','PengeluaranController@save');
 

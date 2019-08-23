@@ -29,13 +29,17 @@
 	  <div class="form-group form-message-dark">
 	    <label for="tgl_keluar" class="col-md-3 control-label">Tgl Keluar</label>
 	    <div class="col-md-9">
+	    	<input type="hidden" name="sns" class="form-control" id="sns">
 	      <input type="text" name="tgl_keluar" class="form-control" id="tgl_keluar" placeholder="tgl_keluar" value="{{ isset($data->tgl_keluar) ? $data->tgl_keluar : ''}}" required>
 	    </div>
 	  </div>
 	  <div class="form-group form-message-dark">
-	    <label for="file_sn_out" class="col-md-3 control-label">File SN</label>
-	    <div class="col-md-9">
-	      <input type="file" name="file_sn_out" class="form-control" id="file_sn_out" placeholder="file_sn_out" value="{{ isset($data->file_sn_out) ? $data->file_sn_out : '' }}" required>
+	    <label for="sn" class="col-md-3 control-label">SN</label>
+	    <div class="col-md-8">
+	      <input type="text" name="sn" class="form-control" id="sn" placeholder="Paste SN">
+	    </div>
+	    <div class="col-md-1">
+	      <button type="button" class="btn searchsn">Go!</button>
 	    </div>
 	  </div>
     <div class="form-group">
@@ -44,8 +48,10 @@
 	    </div>
 	  </div>
 	</form>
-	@if(count($sn))
-	<div class="table-primary">
+	<div class="ajax col-md-offset-3">
+  </div>
+  @if(count($sn))
+  <div class="table-primary">
 	  <div class="table-header">
 	    <div class="table-caption">
 	      Primary Table
@@ -80,6 +86,7 @@
 	@endif
 @endsection
 @section('js')
+<script src="/bower_components/vue-2.5.17/dist/vue.min.js"></script>
 <script type="text/javascript">
   $(function() {
     $('#do-form').pxValidate();
@@ -93,6 +100,23 @@
       data: teknisi,
       multiple:false
     });
+    var snarr = [];
+    $('.searchsn').click(function(){
+    	var sn = $('#sn').val();
+    	$.getJSON('/cekNte/'+sn, function(data){
+    		if(data){
+    			$(".ajax").append('<span class="label label-success m-l-1">'+data.sn+'<br/>'+data.jenis_nte+'<br/>'+data.merk+' '+data.model+'</span>');
+    			snarr.push(data);
+    			console.log(snarr);
+    		}else{
+    			alert('data sn tidak ditemukan!');
+    		}
+    		$('#sn').val(null);
+    	});
+    });
+    $('#do-form').submit(function(){
+    	$('input[name=sns]').val(JSON.stringify(snarr));
+    })
 	});
 </script>
 @endsection
