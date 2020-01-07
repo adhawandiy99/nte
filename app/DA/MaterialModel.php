@@ -11,6 +11,10 @@ class MaterialModel
   {
     return DB::table(self::TABLE)->where('ID_Sistem', $id)->first();
   }
+  public static function getMaterialByOrderId($id)
+  {
+    return DB::table('pemakaian_mtr')->where('Master_Order_ID', $id)->get();
+  }
   public static function getAll()
   {
     return DB::table(self::TABLE)->get();

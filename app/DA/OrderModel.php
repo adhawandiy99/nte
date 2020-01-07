@@ -13,11 +13,11 @@ class OrderModel
   }
   public static function getAll()
   {
-    return DB::table(self::TABLE)->leftJoin('Teknisi', self::TABLE.'.Teknisi_ID', '=', 'Teknisi.ID_Sistem')->get();
+    return DB::table(self::TABLE)->select(self::TABLE.'.*', 'Teknisi.Nama')->leftJoin('Teknisi', self::TABLE.'.Teknisi_ID', '=', 'Teknisi.ID_Sistem')->get();
   }
   public static function getByDate($day)
   {
-    return DB::table(self::TABLE)->leftJoin('Teknisi', self::TABLE.'.Teknisi_ID', '=', 'Teknisi.ID_Sistem')->where('created_at', 'like', $day.'%')->get();
+    return DB::table(self::TABLE)->select(self::TABLE.'.*', 'Teknisi.Nama')->leftJoin('Teknisi', self::TABLE.'.Teknisi_ID', '=', 'Teknisi.ID_Sistem')->where('created_at', 'like', $day.'%')->get();
   }
   public static function delete($id)
   {

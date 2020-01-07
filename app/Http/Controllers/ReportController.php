@@ -35,6 +35,7 @@ class ReportController extends Controller
 	}
 	public function pdf($id){
 		$data = OrderModel::getOrderById($id);
+		// dd($data);
 		$mtr = MaterialModel::getMaterialByOrderId($id);
 		$pdf = PDF::loadView('report.pdf', compact('data', 'mtr'));
 		return $pdf->download('report-'.date('Ymd').'.pdf');
