@@ -52,12 +52,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/do','DoController@index');
     Route::get('/do/{id}','DoController@input');
     Route::post('/do/{id}','DoController@save');
+    Route::get('/deletedo/{id}','DoController@delete');
 
     //pengeluaran
     Route::get('/out','PengeluaranController@index');
     Route::get('/cekNte/{sn}','PengeluaranController@cekNte');
     Route::get('/out/{id}','PengeluaranController@input');
     Route::post('/out/{id}','PengeluaranController@save');
+    Route::get('/deleteout/{id}','PengeluaranController@delete');
 
     //opname
     Route::get('/opname','OpnameController@index');

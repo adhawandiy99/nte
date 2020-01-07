@@ -31,8 +31,11 @@
       <span class="navbar-toggle-icon"></span>
       <span class="px-nav-toggle-label font-size-11">HIDE MENU</span>
     </button>
-
+    <?php
+      $ses = session('auth');
+    ?>
     <ul class="px-nav-content">
+      @if($ses->Level == 1)
       <li class="px-nav-item px-nav-dropdown {{ (Request ::segment(1)=='do'||Request ::segment(1)=='out'||Request ::segment(1)=='opname')?'px-open active' : '' }}">
         <a href="#"><i class="px-nav-icon ion-iphone"></i><span class="px-nav-label">Transaksional Gudang</span></a>
         <ul class="px-nav-dropdown-menu">
@@ -41,10 +44,11 @@
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item {{ (Request ::segment(1)=='out')?'active' : '' }}"><a href="/out"><span class="px-nav-label">Input Pengeluaran</span></a></li>
         </ul>
-        <ul class="px-nav-dropdown-menu">
+        <!-- <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item {{ (Request ::segment(1)=='opname')?'active' : '' }}"><a href="/opname"><span class="px-nav-label">Stok Opname</span></a></li>
-        </ul>
+        </ul> -->
       </li>
+
       <li class="px-nav-item px-nav-dropdown {{ str_contains(Request ::segment(1), ['info','search'])?'px-open active' : '' }}">
         <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Info Gudang</span></a>
         <ul class="px-nav-dropdown-menu">
@@ -68,20 +72,25 @@
           <li class="px-nav-item"><a href="/order"><span class="px-nav-label">Order</span></a></li>
         </ul>
       </li>
+      @endif
+      @if($ses->Level == 2)
       <li class="px-nav-item px-nav-dropdown">
         <a href="#"><i class="px-nav-icon ion-iphone"></i><span class="px-nav-label">Teknisi</span></a>
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="/inbox_order"><span class="px-nav-label">Inbox Order</span></a></li>
         </ul>
       </li>
+      @endif
+      @if($ses->Level == 3 || $ses->Level == 1)
       <li class="px-nav-item px-nav-dropdown">
         <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Reporting</span></a>
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="/report1/all"><span class="px-nav-label">Report1</span></a></li>
         </ul>
       </li>
+      @endif
       <li class="px-nav-item px-nav-dropdown">
-        <a href="#"><i class="px-nav-icon ion-ios-person"></i><span class="px-nav-label">{{ session('auth')->Username }} </span></a>
+        <a href="#"><i class="px-nav-icon ion-ios-person"></i><span class="px-nav-label">{{ $ses->Username }} </span></a>
 
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="/logout"><span class="px-nav-label">Logout</span></a></li>

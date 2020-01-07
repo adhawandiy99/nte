@@ -20,10 +20,11 @@ class PengeluaranModel
   {
     return DB::table(self::TABLE)->get();
   }
-  // public static function delete($id)
-  // {
-  //   return DB::table(self::TABLE)->where('id', $id)->delete();
-  // }
+  public static function delete($id)
+  {
+    DB::table(self::NTE)->where('pengeluaran_id', $id)->update(["status"=>"In Warehouse", "pengeluaran_id"=>null, "teknisi_id"=>null]);
+    DB::table(self::TABLE)->where('id', $id)->delete();
+  }
   public static function insertOrUpdate($id, $req)
   {
     $auth = session('auth');

@@ -33,6 +33,11 @@
 	        			<span class="btn-label-icon left fa fa-pencil"></span>Edit
 	        		</button>
 	        	</a>
+	        	<a href="/deletedo/{{ $d->id }}">
+	        		<button type="button" class="btn btn-danger btn-outline btn-rounded btn-xs">
+	        			<span class="btn-label-icon left fa fa-trash"></span>Hapus
+	        		</button>
+	        	</a>
 	        </td>
 	      </tr>
 	      @endforeach

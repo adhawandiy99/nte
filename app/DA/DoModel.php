@@ -23,6 +23,8 @@ class DoModel
   public static function delete($id)
   {
     return DB::table(self::TABLE)->where('id', $id)->delete();
+    DB::table(self::NTE)
+      ->where('do_id', $id)->delete();
   }
   public static function insertOrUpdate($id, $req)
   {

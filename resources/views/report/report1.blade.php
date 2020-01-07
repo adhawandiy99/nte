@@ -8,7 +8,7 @@
 @section('css')
 @endsection
 @section('content')
-	<div class="form-inline" id="filter">
+	<div class="form-inline m-b-1" id="filter">
 	  <div class="form-group">
 	    <label for="form-inline-input-1">Tahun</label>
 	    <input type="text" class="form-control input-xs tahun" placeholder="YYYY">

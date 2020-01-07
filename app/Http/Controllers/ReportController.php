@@ -12,20 +12,19 @@ use PDF;
 class ReportController extends Controller
 {
 	public function index($day){
-		$d = explode('-', $day);
-		$day='all';
-		if($d[0]){
-			$day = $d[0];
-		}
-		if($d[1]){
-			$day .= '-'.$d[1];
-		}
-		if($d[1]){
-			$day = '-'.$d[2];
-		}
-		if($day=="all"){
+		if($day=="all" || $day=="--"){
 			$data = OrderModel::getAll();
 		}else{
+			$d = explode('-', $day);
+			if($d[0]){
+				$day = $d[0];
+			}
+			if($d[1]){
+				$day .= '-'.$d[1];
+			}
+			if($d[1]){
+				$day = '-'.$d[2];
+			}
 			$data = OrderModel::getByDate($day);
 		}
 		return view('report.report1', compact('data'));

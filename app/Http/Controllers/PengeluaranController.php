@@ -40,8 +40,8 @@ class PengeluaranController extends Controller
     $data = PengeluaranModel::cekNte($sn);
     return json_encode($data);
   }
-  // public function delete($id){
-  //   $data = PengeluaranModel::delete($id);
-  //   return redirect('/pengeluaran');
-  // }
+  public function delete($id){
+    PengeluaranModel::delete($id);
+    return redirect('/out');
+  }
 }
