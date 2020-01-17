@@ -33,7 +33,14 @@ class ReportController extends Controller
 		$data = MaterialModel::getReport();
 		return view('report.report2', compact('data'));
 	}
-	public function pdf($id){
+	public function pdf_stream($id){
+		$data = OrderModel::getOrderById($id);
+		// dd($data);
+		$mtr = MaterialModel::getMaterialByOrderId($id);
+		$pdf = PDF::loadView('report.pdf', compact('data', 'mtr'));
+		return $pdf->stream('report-'.date('Ymd').'.pdf');
+	}
+	public function pdf_download($id){
 		$data = OrderModel::getOrderById($id);
 		// dd($data);
 		$mtr = MaterialModel::getMaterialByOrderId($id);

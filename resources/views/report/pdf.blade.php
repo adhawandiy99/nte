@@ -13,6 +13,8 @@ Pada Hari ini tanggal {{ date('d') }} Bulan {{ date('m') }} tahun {{ date('Y') }
 	<tr><td width="150">Wilayah</td><td> : {{ $data->Wilayah }}</td></tr>
 	<tr><td width="150">Alamat</td><td> : {{ $data->Alamat }}</td></tr>
 	<tr><td width="150">Teknisi</td><td> : {{ $data->Nama }}</td></tr>
+	<tr><td width="150">ONT</td><td> : {{ $data->ont }}</td></tr>
+	<tr><td width="150">STB</td><td> : {{ $data->stb }}</td></tr>
 	<tr><td width="150">Status</td><td> : {{ $data->Status }}</td></tr>
 </table>
 <br>
@@ -50,7 +52,7 @@ Penggunaan Material :
 	</tr>
 </table>
 
-<p style="text-align: center;">Pimpinan</p>
+<p style="text-align: center;">Admin/Teknisi</p>
 <br><br>
 <p style="text-align: center;">...................</p>
 <p style="text-align: center;">NIK</p>

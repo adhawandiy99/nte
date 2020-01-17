@@ -59,6 +59,11 @@
 	        		<button type="button" class="btn btn-success btn-outline btn-rounded btn-xs">
 	        			<span class="btn-label-icon left fa fa-pencil"></span>Print
 	        		</button>
+	        	</a> |
+	        	<a href="/downloadpdf/{{ $d->ID_Sistem }}">
+	        		<button type="button" class="btn btn-success btn-outline btn-rounded btn-xs">
+	        			<span class="btn-label-icon left fa fa-pencil"></span>Download
+	        		</button>
 	        	</a>
 	        </td>
 	      </tr>
